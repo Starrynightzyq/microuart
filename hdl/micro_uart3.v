@@ -147,7 +147,7 @@ reg        overflow;
       // Defaults for TX FSM
       nxt_tx_state    = tx_state;
       nxt_tx_bit_cnt  = tx_bit_cnt;
-      nxt_tx_samp_cnt = tx_samp_cnt;
+      nxt_tx_samp_cnt = tx_samp_cnt; // tx_samp_cnt
       nxt_shift_out   = shift_out;
 
       case (tx_state)
@@ -299,7 +299,7 @@ reg        overflow;
    // assign ref_pulse = ref_edge ^ ref_sync;
    
 
-   assign samp_tick = (baud_count==16'h0000);
+   assign samp_tick = (baud_count==16'h0000)&&ref_pulse;
 
   //
   // Register part
@@ -356,7 +356,7 @@ reg        overflow;
          begin
             if (samp_tick | new_baud_rate)
             begin
-               baud_count    <= baud_rate; // can make this a constant
+               baud_count    <= baud_rate; // can make this a constant {baud_rate}
                new_baud_rate <= 1'b0;
             end
             else

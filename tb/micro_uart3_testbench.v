@@ -20,7 +20,7 @@
 module micro_uart3_apb_testbench;
 
 localparam CLK_PERIOD=100;
-localparam REF_CLK_PERIOD=200;
+localparam REF_CLK_PERIOD=400;
 
 //
 // Status register bits

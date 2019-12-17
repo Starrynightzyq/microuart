@@ -28,6 +28,8 @@ module micro_uart3_apb
    input  [ 31:0] apb_pwdata,   // APB write data
    input  [  3:0] apb_paddr,    // APB address bus LS 2 bits are unused
    output [ 31:0] apb_prdata,   // data read back
+   output         apb_pready,
+   output         apb_pslverr,
    output         irq,          // interrupt
   
    input          ser_in,         // Micro uart serial input
@@ -71,6 +73,8 @@ micro_uart3_inst (
    assign cpu_wdata  = apb_pwdata[15:0];
    assign apb_prdata = {16'h0,cpu_rdata};
 
+   assign apb_pready  = 1'b1;
+   assign apb_pslverr = 1'b0;
 
 endmodule
 
